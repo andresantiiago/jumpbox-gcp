@@ -1,8 +1,16 @@
 locals {
-  global_vars        = yamldecode(file("../vars/vars.yaml"))
+  env_vars      = yamldecode(file("../vars/vars.yaml"))
+  labels        = local.env_vars.tags
+  tags          = [
+    local.env_vars.tags.region,
+    local.env_vars.tags.zone,
+    local.env_vars.tags.purpose,
+    local.env_vars.tags.project
+  ]
 }
+
 provider "google" {
-  project                     = local.global_vars.project
+  project = local.env_vars.tags.project
 }
 
 terraform {

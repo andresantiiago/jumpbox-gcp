@@ -1,2 +1,11 @@
-region: us-central1
-project: relaxed-margulis
+tags:
+  region: us-central1
+  zone: us-central1-a
+  purpose: jumpbox
+  project: relaxed-margulis
+
+instance:
+  count: 1
+  name: jumpbox
+  type: e2-micro
+  image: ubuntu-minimal-2204-jammy-v20240515
