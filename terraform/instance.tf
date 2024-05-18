@@ -47,8 +47,6 @@ resource "google_compute_instance" "default" {
     user-data = "${data.template_cloudinit_config.config.rendered}"
   }
 
-  # metadata_startup_script = "sudo apt install cloud-init"
-
   service_account {
     email  = google_service_account.default.email
     scopes = ["cloud-platform"]
