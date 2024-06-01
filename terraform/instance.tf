@@ -4,7 +4,9 @@ resource "google_service_account" "default" {
 }
 
 data "template_file" "cloud_init" {
-  template = "${file("${path.module}/../template/cloud-config.tpl")}"
+  # template = "${file("${path.module}/../template/cloud-config.tpl")}"
+  template = templatefile("${path.module}/../template/cloud-config.tpl",
+  merge(local.env_vars))
 }
 
 data "template_cloudinit_config" "config" {
@@ -53,5 +55,4 @@ resource "google_compute_instance" "default" {
   }
 
   allow_stopping_for_update = true
-
 }
